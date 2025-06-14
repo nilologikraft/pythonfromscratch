@@ -1,0 +1,138 @@
+##############################################################################
+# Python From Scratch
+# Author: Nilo Ney Coutinho Menezes
+# Editora Novatec (c) 2010-2025 - LogiKraft 2025
+# Site: https://pythonfromscratch.com
+# ISBN: 978-85-7522-949-1 (Paperback), 978-85-7522-950-7 (hardcover), 978-85-7522-951-4 (ebook)
+#
+# File: chapter 09/exercise-09-42.py.py
+##############################################################################
+import sys
+
+# Check if filename was provided as argument
+if len(sys.argv) != 2:
+    print("Usage: python exercise-09-42.py filename.bmp")
+    sys.exit(1)
+
+filename = sys.argv[1]
+
+
+def bytes_little_endian(number, nbytes=4, signed=False):
+    """Converts an integer to a sequence of bytes using little endian encoding.
+    If signed is passed, reserves a bit to represent the sign."""
+    return number.to_bytes(nbytes, "little", signed=signed)
+
+
+def padding(value, size=4):
+    """Calculates the next multiple for size"""
+    if remainder := value % size:
+        return value + size - remainder
+    return value
+
+
+# Letter to color conversion table
+# in RGB format (red, green, blue)
+# Each color can range from 0 to 255.
+letter_to_color = {
+    " ": (0, 0, 0),  # black
+    "r": (255, 0, 0),  # red
+    "g": (0, 255, 0),  # green
+    "b": (0, 0, 255),  # blue
+}
+# Drawing that we will transform into an image
+drawing = [
+    "  rrrr r r bbbbb b    b   ggggg   g    g  r",
+    "  r  r r r   b   b    b  g     g  gg   g  r",
+    "  r  r r r   b   b    b  g r r g  g g  g  r",
+    "  rrr   r    b   bbbbbb  g     g  g  g g  r",
+    "  r     r    b   b    b  gr b rg  g  g g   ",
+    "  r     r    b   b    b  g rrr g  g   gg  r",
+    "  r     r    b   b    b   ggggg   g    g  r",
+]
+# Point multiplier
+# Each point will be copied multiplier times in the image
+# If equal to 4, each point generates a 4x4 point block
+multiplier = 32
+
+# Check if all lines have the same size
+drawing_width = len(drawing[0])
+
+for line, z in enumerate(drawing):
+    if len(z) != drawing_width:
+        raise ValueError(
+            f"Lines must have the same size. Line with different width: {line} instead of {len(z)}"
+        )
+
+# Calculate data based on multiplier
+expanded_drawing = []
+for line in drawing:
+    new_line = []
+    for letter in line:
+        new_line.append(letter * multiplier)
+    for _ in range(multiplier):
+        expanded_drawing.append("".join(new_line))
+
+
+width = len(expanded_drawing[0])  # Number of columns in the image
+height = len(expanded_drawing)  # Number of lines in the image
+
+# Check if letters represent colors
+binary_data = []
+for line in expanded_drawing:
+    binary_line = []
+    for character in line:
+        # Invert byte order for BMP RGB format
+        binary_line.append(bytes(letter_to_color[character][::-1]))
+    binary_data.append(b"".join(binary_line))
+
+# Add padding
+width_bytes = width * 3
+width_with_padding = padding(width_bytes)
+if width_bytes != width_with_padding:
+    for p, d in enumerate(binary_data):
+        binary_data[p] = b"".join(
+            [binary_data[p], bytes(width_with_padding - width_bytes)]
+        )
+
+# Calculate image size in bytes with padding
+size = padding(width * 3) * height
+
+bmp_header = [
+    b"BM",  # Identifier
+    bytes_little_endian(54 + size),  # Image size in bytes
+    bytes(4),  # 4 bytes 0x00
+    bytes_little_endian(54),  # Header size
+]
+
+dib_header = [
+    bytes_little_endian(40),  # DIB header size
+    bytes_little_endian(width),
+    bytes_little_endian(
+        -height, signed=True
+    ),  # Negative height to build image from top to bottom
+    bytes_little_endian(1, 2),  # Color planes
+    bytes_little_endian(24, 2),  # Bits per pixel
+    bytes_little_endian(0),  # No compression
+    bytes_little_endian(size),
+    bytes_little_endian(2835),  # ceil(72 dpi x 39.3701 in/m) horizontal
+    bytes_little_endian(2835),  # ceil(72 dpi x 39.3701 in/m) vertical
+    bytes_little_endian(0),  # Number of colors in palette
+    bytes_little_endian(0),  # Important colors
+]
+
+bmp_header_binary = b"".join(bmp_header)
+dib_header_binary = b"".join(dib_header)
+binary_data = b"".join(binary_data)
+
+# Verify binary header sizes
+assert len(bmp_header_binary) == 14
+assert len(dib_header_binary) == 40
+assert len(binary_data) == size
+
+# Write the image
+with open(filename, "wb") as f:
+    f.write(bmp_header_binary)
+    f.write(dib_header_binary)
+    f.write(binary_data)
+
+print(f"File {filename} generated. {width=} x {height=} {size=} bytes")

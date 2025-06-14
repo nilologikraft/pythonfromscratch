@@ -1,0 +1,58 @@
+##############################################################################
+# Python From Scratch
+# Author: Nilo Ney Coutinho Menezes
+# Editora Novatec (c) 2010-2025 - LogiKraft 2025
+# Site: https://pythonfromscratch.com
+# ISBN: 978-85-7522-949-1 (Paperback), 978-85-7522-950-7 (hardcover), 978-85-7522-951-4 (ebook)
+#
+# File: chapter 09/exercise-09-08.py.py
+##############################################################################
+import sys
+
+
+def check_page(file, line, page):
+    if line == LINES:
+        footer = f"= {FILENAME} - Page: {page} ="
+        file.write(footer.center(WIDTH - 1) + "\n")
+        page += 1
+        line = 1
+    return line, page
+
+
+def write(file, line, nlines, page):
+    file.write(line + "\n")
+    return check_page(file, nlines + 1, page)
+
+
+if len(sys.argv) != 4:
+    print("\nUsage: e09-08.py file width lines\n\n")
+    sys.exit(1)
+
+FILENAME = sys.argv[1]
+WIDTH = int(sys.argv[2])
+LINES = int(sys.argv[3])
+
+input_file = open(FILENAME, encoding="utf-8")
+output = open("paginated_output.txt", "w", encoding="utf-8")
+
+page = 1
+lines = 1
+
+for line in input_file.readlines():
+    words = line.rstrip().split(" ")
+    line = ""
+    for word in words:
+        word = word.strip()
+        if len(line) + len(word) + 1 > WIDTH:
+            lines, page = write(output, line, lines, page)
+            line = ""
+        line += word + " "
+    if line != "":
+        lines, page = write(output, line, lines, page)
+
+# To print the number on the last page
+while lines != 1:
+    lines, page = write(output, "", lines, page)
+
+input_file.close()
+output.close()

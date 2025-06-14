@@ -1,0 +1,8 @@
+=
+;This line should not be printed.
+>This line should be right-aligned
+*This line should be centered
+.
+A normal line
+Another normal line
+.
