@@ -8,10 +8,10 @@
 # File: chapter 08/exercise-08-20.py.py
 ##############################################################################
 def factorial_generator(n):
-    p = 1
-    for v in range(1, n + 1):
-        p *= v
-        yield p
+    value = 1
+    for element in range(1, n + 1):
+        value *= element
+        yield value
 
 
 # Usage example:

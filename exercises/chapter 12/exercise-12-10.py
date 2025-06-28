@@ -12,7 +12,7 @@ import re
 DOLLARS_RE = r"^(([rR]\$)?(((\d{1,3}\.)?(\d{3}\.)*?\d{3})|(\d{1,3}))(,\d{2})?)$"
 # ^ - From the start of the string
 # ( - Group of the right part of the expression, before the comma
-#  ([rR]\$)? - Optionally can have R$
+#  ([rR]\$)? - Optionally can have $
 #  ( - Group of the integer part
 #   ((\d{1,3}\.)?(\d{3}\.)*?\d{3}) - Group of the integer part with dots separating thousands
 #   Required to ensure that parts between dots have 3 digits, except the first one
@@ -36,28 +36,28 @@ def dollars(input):
 
 
 inputs = [
-    "R$ 1.234,56",  # Yes
-    "r$ 1.234,56",  # Yes
-    "r$1.234,56",  # Yes
-    "r$12.123.234,56",  # Yes
+    "$ 1.234,56",  # Yes
+    "$ 1.234,56",  # Yes
+    "$1.234,56",  # Yes
+    "$12.123.234,56",  # Yes
     "1.234,56",  # Yes
-    "R$1.234,56",  # Yes
-    "r$234,56",  # Yes
-    "R$234,56",  # Yes
+    "$1.234,56",  # Yes
+    "$234,56",  # Yes
+    "$234,56",  # Yes
     "234,56",  # Yes
-    "r$234",  # Yes
-    "R$234",  # Yes
-    "R$2",  # Yes
-    "R$23",  # Yes
+    "$234",  # Yes
+    "$234",  # Yes
+    "$2",  # Yes
+    "$23",  # Yes
     "234",  # Yes
     "34",  # Yes
     "4",  # Yes
-    "r$234,4",  # No - Cents must have 2 digits
-    "R$234,4",  # No - Cents must have 2 digits
-    "R$1234,4",  # No - Missing . to separate thousands
-    "r$1234,4",  # No - Missing . to separate thousands
-    "r$1234.12,4",  # No - Incorrect use of thousands separator (.)
-    "r$1.24,56",  # No - Irregular, only two numbers after the .
+    "$234,4",  # No - Cents must have 2 digits
+    "$234,4",  # No - Cents must have 2 digits
+    "$1234,4",  # No - Missing . to separate thousands
+    "$1234,4",  # No - Missing . to separate thousands
+    "$1234.12,4",  # No - Incorrect use of thousands separator (.)
+    "$1.24,56",  # No - Irregular, only two numbers after the .
 ]
 
 

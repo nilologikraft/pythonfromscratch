@@ -10,18 +10,20 @@
 first = []
 second = []
 while True:
-    e = int(input("Enter a value for the first list (0 to finish): "))
-    if e == 0:
+    element = int(input("Enter a value for the first list (0 to finish): "))
+    if element == 0:
         break
-    first.append(e)
+    first.append(element)
 while True:
-    e = int(input("Enter a value for the second list (0 to finish): "))
-    if e == 0:
+    element = int(input("Enter a value for the second list (0 to finish): "))
+    if element == 0:
         break
-    second.append(e)
-third = first[:]  # Copies elements from the first list
+    second.append(element)
+# Copies elements from the first list to the third list
+third = first[:]
+# Extends the third list with the elements of the second list
 third.extend(second)
 x = 0
 while x < len(third):
     print(f"{x}: {third[x]}")
-    x = x + 1
+    x += 1

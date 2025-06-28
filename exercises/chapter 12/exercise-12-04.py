@@ -59,7 +59,7 @@ def optional(input_string, patterns):
 
 three_numbers = partial(number, min_qty=1, max_qty=3)
 cents = partial(number, min_qty=1, max_qty=2)
-dollar_sign = partial(sequence, pattern="R$")
+dollar_sign = partial(sequence, pattern="$")
 comma = partial(sequence, pattern=",")
 
 # Only the values mentioned in the exercise
@@ -69,12 +69,12 @@ pattern = [dollar_sign, three_numbers, comma, cents]
 
 # Here's a small list of inputs to facilitate visualization
 inputs = [
-    "R$123,45",  # Pattern found
-    "R$123,450",  # Pattern not found
+    "123,45",  # Pattern found
+    "$123,450",  # Pattern not found
     "$123,45",  # Pattern not found
-    "R$12,34",  # Pattern found
-    "R$123,45 R$12,34 R$1,23 R$1,0",  # Pattern found four times
-    "R$123 R$12 R$1 R$1,0",  # Pattern found four times (if bonus - optional enabled), once otherwise
+    "$12,34",  # Pattern found
+    "$123,45 $12,34 $1,23 $1,0",  # Pattern found four times
+    "$123 $12 $1 $1,0",  # Pattern found four times (if bonus - optional enabled), once otherwise
 ]
 for input_string in inputs:
     print("Input:", input_string)

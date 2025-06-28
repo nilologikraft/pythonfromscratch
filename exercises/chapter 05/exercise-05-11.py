@@ -13,6 +13,6 @@ month = 1
 balance = deposit
 while month <= 24:
     balance = balance + (balance * (rate / 100))
-    print(f"Balance for month {month} is R${balance:5.2f}.")
+    print(f"Balance for month {month} is ${balance:5.2f}.")
     month = month + 1
-print(f"The gain obtained with interest was R${balance-deposit:8.2f}.")
+print(f"The gain obtained with interest was ${balance-deposit:8.2f}.")

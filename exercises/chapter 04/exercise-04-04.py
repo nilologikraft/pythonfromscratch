@@ -12,4 +12,4 @@ raise_percentage = 0.15
 if salary > 1250:
     raise_percentage = 0.10
 raise_amount = salary * raise_percentage
-print(f"Your raise will be: R$ {raise_amount:7.2f}")
+print(f"Your raise will be: ${raise_amount:7.2f}")

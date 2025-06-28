@@ -11,7 +11,7 @@ from datetime import date
 import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter.messagebox import showerror
-from site_registro import Site
+from site_register import Site
 from data import Data
 
 

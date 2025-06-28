@@ -5,22 +5,15 @@
 # Site: https://pythonfromscratch.com
 # ISBN: 978-85-7522-949-1 (Paperback), 978-85-7522-950-7 (hardcover), 978-85-7522-951-4 (ebook)
 #
-# File: chapter 06/exercise-06-07.py.py
+# File: chapter 06/exercise-06-11.py.py
 ##############################################################################
-expression = input("Enter the sequence of parentheses to validate:")
-x = 0
-stack = []
-while x < len(expression):
-    if expression[x] == "(":
-        stack.append("(")
-    if expression[x] == ")":
-        if len(stack) > 0:
-            top = stack.pop(-1)
-        else:
-            stack.append(")")  # Forces error message
-            break
-    x = x + 1
-if len(stack) == 0:
-    print("OK")
-else:
-    print("Error")
+L = []
+while True:
+    n = int(input("Enter a number (0 to exit):"))
+    if n == 0:
+        break
+    L.append(n)
+for e in L:
+    print(e)
+# The first while loop couldn't be converted to a for loop because
+# the number of repetitions is unknown at the start.

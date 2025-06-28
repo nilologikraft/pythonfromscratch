@@ -7,14 +7,14 @@
 #
 # File: chapter 05/exercise-05-14.py.py
 ##############################################################################
-sum = 0
+nsum = 0
 quantity = 0
 while True:
     n = int(input("Enter an integer: "))
     if n == 0:
         break
-    sum = sum + n
+    nsum = nsum + n
     quantity = quantity + 1
 print("Number of integers entered:", quantity)
-print("Sum: ", sum)
-print(f"Average: {sum/quantity:10.2f}")
+print("Sum: ", nsum)
+print(f"Average: {nsum/quantity:10.2f}")

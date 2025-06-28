@@ -10,6 +10,6 @@
 speed = float(input("Enter your car speed:"))
 if speed > 80:
     fine = (speed - 80) * 5
-    print(f"You were fined R$ {fine:7.2f}!")
+    print(f"You were fined ${fine:7.2f}!")
 if speed <= 80:
     print("Your speed is ok, have a good trip!")

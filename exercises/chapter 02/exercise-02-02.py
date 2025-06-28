@@ -11,7 +11,7 @@
 # 10 % 3 * 10 ** 2 + 1 - 10 * 4 / 2
 # is 81.0
 #
-# Performing the calculation with the priorities from page 39,
+# Performing the calculation with the priorities from page 52,
 # executing only one operation per line,
 # we have the following calculation order:
 # 0 --> 10 % 3 * 10 ** 2 + 1 - 10 * 4 / 2
@@ -24,5 +24,5 @@
 # 7 -->                        81
 #
 # If you're curious to know why the result
-# is 81.0 and not 81, read section 3.2, page 45.
+# is 81.0 and not 81, read section 3.2, page 67.
 # The division operation always results in a floating point number.

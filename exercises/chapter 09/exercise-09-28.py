@@ -145,7 +145,7 @@ def change():
         print("Name not found.")
 
 
-def list():
+def list_all():
     print("\nAddress Book\n\n------")
     # We use the enumerate function to get the position in the address book
     for position, e in enumerate(address_book):
@@ -280,7 +280,7 @@ while True:
     elif option == 3:
         delete()
     elif option == 4:
-        list()
+        list_all()
     elif option == 5:
         save()
     elif option == 6:

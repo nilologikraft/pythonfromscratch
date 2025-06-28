@@ -29,9 +29,9 @@ def write_number(file, n):
     file.write(f"{n}\n")
 
 
-even = open("pares.txt", "r")
-odd = open("ímpares.txt", "r")
-even_odd = open("pareseimpares.txt", "w")
+even = open("evens.txt", "r")
+odd = open("odds.txt", "r")
+even_odd = open("even_odd.txt", "w")
 even_num = read_number(even)
 odd_num = read_number(odd)
 while True:

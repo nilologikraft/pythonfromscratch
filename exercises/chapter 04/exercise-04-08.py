@@ -8,10 +8,10 @@
 # File: chapter 04/exercise-04-08.py.py
 ##############################################################################
 plan = input("What is your cell phone plan? ")
-if plan != "talklittle" and plan != "talkalot":
+if plan != "littletalk" and plan != "talkmore":
     print("I don't know this plan")
 else:
-    if plan == "talklittle":
+    if plan == "littletalk":
         minutes_in_plan = 100
         extra = 0.20
         price = 50
@@ -22,9 +22,9 @@ else:
 
     minutes_used = int(input("How many minutes did you use? "))
     print("You will pay:")
-    print(f"Plan price      R${price:10.2f}")
+    print(f"Plan price      ${price:10.2f}")
     supplement = 0
     if minutes_used > minutes_in_plan:
         supplement = extra * (minutes_used - minutes_in_plan)
-    print(f"Supplement      R${supplement:10.2f}")
-    print(f"Total           R${price + supplement:10.2f}")
+    print(f"Supplement      ${supplement:10.2f}")
+    print(f"Total           ${price + supplement:10.2f}")

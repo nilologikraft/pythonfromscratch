@@ -25,7 +25,7 @@ def write(file, line, nlines, page):
 
 
 if len(sys.argv) != 4:
-    print("\nUsage: e09-08.py file width lines\n\n")
+    print("\nUsage: exercise-09-08.py file width lines\n\n")
     sys.exit(1)
 
 FILENAME = sys.argv[1]

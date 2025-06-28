@@ -10,9 +10,9 @@
 # Alternative solution, using the dictionary's get method
 
 sentence = input("Enter a sentence to count the letters:")
-d = {}
+letter_counter = {}
 for letter in sentence:
     # If letter doesn't exist in dictionary, returns 0
     # if it exists, returns the previous value
-    d[letter] = d.get(letter, 0) + 1
-print(d)
+    letter_counter[letter] = letter_counter.get(letter, 0) + 1
+print(letter_counter)

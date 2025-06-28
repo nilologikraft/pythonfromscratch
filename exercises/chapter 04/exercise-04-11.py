@@ -15,4 +15,4 @@ installment = value / months
 if installment > salary * 0.3:
     print("Unfortunately you cannot get the loan")
 else:
-    print(f"Installment value: R$ {installment:7.2f} Loan OK")
+    print(f"Installment value: $ {installment:7.2f} Loan OK")

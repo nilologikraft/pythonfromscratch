@@ -9,5 +9,5 @@
 ##############################################################################
 # The exercise consists of tracing the program from listing 4.8.
 # The result should be the same as shown in table 4.2.
-# The tracing technique is presented on page 110,
+# The tracing technique is presented on page 83,
 # section 3.6 Tracing.

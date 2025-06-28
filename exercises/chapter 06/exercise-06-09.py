@@ -5,34 +5,20 @@
 # Site: https://pythonfromscratch.com
 # ISBN: 978-85-7522-949-1 (Paperback), 978-85-7522-950-7 (hardcover), 978-85-7522-951-4 (ebook)
 #
-# File: chapter 06/exercise-06-09.py.py
+# File: chapter 06/exercise-06-13.py.py
 ##############################################################################
-L = [15, 7, 27, 39]
-p = int(input("Enter the value to search for (p): "))
-v = int(input("Enter the other value to search for (v): "))
-x = 0
-foundP = False
-foundV = False
-first = 0
-while x < len(L):
-    if L[x] == p:
-        foundP = True
-        if not foundV:
-            first = 1
-    if L[x] == v:
-        foundV = True
-        if not foundP:
-            first = 2
-    x += 1
-if foundP:
-    print(f"p: {p} found")
-else:
-    print(f"p: {p} not found")
-if foundV:
-    print(f"v: {v} found")
-else:
-    print(f"v: {v} not found")
-if first == 1:
-    print("p was found before v")
-elif first == 2:
-    print("v was found before p")
+T = [-10, -8, 0, 1, 2, 5, -2, -4]
+minimum = T[
+    0
+]  # The choice of the first element is arbitrary, could be any valid element
+maximum = T[0]
+sum = 0
+for e in T:
+    if e < minimum:
+        minimum = e
+    if e > maximum:
+        maximum = e
+    sum = sum + e
+print(f"Maximum temperature: {maximum} °C")
+print(f"Minimum temperature: {minimum} °C")
+print(f"Average temperature: {sum / len(T)} °C")

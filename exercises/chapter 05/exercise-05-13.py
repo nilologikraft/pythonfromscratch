@@ -22,12 +22,12 @@ else:
         interest = balance * rate / 100
         balance = balance + interest - payment
         interest_paid = interest_paid + interest
-        print(f"Debt balance in month {month} is R${balance:6.2f}.")
+        print(f"Debt balance in month {month} is ${balance:6.2f}.")
         month = month + 1
-    print(f"To pay off a debt of R${debt:8.2f}, at {rate:5.2f}% interest,")
+    print(f"To pay off a debt of ${debt:8.2f}, at {rate:5.2f}% interest,")
     print(
-        f"you will need {month - 1} months, paying a total of R${interest_paid:8.2f} in interest."
+        f"you will need {month - 1} months, paying a total of ${interest_paid:8.2f} in interest."
     )
     print(
-        f"In the last month, you would have a remaining balance of R${balance:8.2f} to pay."
+        f"In the last month, you would have a remaining balance of ${balance:8.2f} to pay."
     )

@@ -5,33 +5,39 @@
 # Site: https://pythonfromscratch.com
 # ISBN: 978-85-7522-949-1 (Paperback), 978-85-7522-950-7 (hardcover), 978-85-7522-951-4 (ebook)
 #
-# File: chapter 06/exercise-06-10.py.py
+# File: chapter 06/exercise-06-14.py.py
 ##############################################################################
-L = [15, 7, 27, 39]
-p = int(input("Enter the value to search for (p):"))
-v = int(input("Enter the other value to search for (v):"))
-x = 0
-foundP = -1  # Here -1 indicates we haven't found the value yet
-foundV = -1
-first = 0
-while x < len(L):
-    if L[x] == p:
-        foundP = x
-    if L[x] == v:
-        foundV = x
-    x += 1
-if foundP != -1:
-    print(f"p: {p} found at position {foundP}")
-else:
-    print(f"p: {p} not found")
-if foundV != -1:
-    print(f"v: {v} found at position {foundV}")
-else:
-    print(f"v: {v} not found")
-# Check if both were found
-if foundP != -1 and foundV != -1:
-    # since foundP and foundV store the positions where they were found
-    if foundP <= foundV:
-        print("p was found before v")
+available_seats = [10, 2, 1, 3, 0]
+sold = [0] * len(available_seats)
+while True:
+    room = int(input("Room (0 to exit): "))
+    if room == 0:
+        print("End")
+        break
+    if room > len(available_seats) or room < 1:
+        print("Invalid room")
+    elif available_seats[room - 1] == 0:
+        print("Sorry, room is full!")
     else:
-        print("v was found before p")
+        seats = int(
+            input(
+                f"How many seats do you want ({available_seats[room - 1]} available):"
+            )
+        )
+        if seats > available_seats[room - 1]:
+            print("That number of seats is not available.")
+        elif seats < 0:
+            print("Invalid number")
+        else:
+            available_seats[room - 1] -= seats
+            sold[room - 1] += seats
+            print(f"{seats} seats sold")
+print("\nRoom utilization")
+for room, available in enumerate(available_seats):
+    print(f"Room {room + 1} – {available} seat(s) available")
+print("\nSales by room")
+total_sold = 0
+for room, sales in enumerate(sold):
+    print(f"Room {room + 1} – {sales} ticket(s) sold")
+    total_sold += sales
+print(f"Total tickets sold: {total_sold}")

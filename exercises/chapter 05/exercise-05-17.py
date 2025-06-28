@@ -7,4 +7,4 @@
 #
 # File: chapter 05/exercise-05-17.py.py
 ##############################################################################
-# The program stops right after printing the quantity of R$50.00 bills
+# The program stops right after printing the quantity of $50.00 bills

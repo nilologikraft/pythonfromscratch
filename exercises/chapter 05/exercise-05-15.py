@@ -28,4 +28,4 @@ while True:
     if price != 0:
         quantity = int(input("Quantity: "))
         to_pay = to_pay + (price * quantity)
-print(f"Total to pay R${to_pay:8.2f}")
+print(f"Total to pay ${to_pay:8.2f}")

@@ -12,7 +12,7 @@ class Television:
         self.powered = False
         self.channel = 2
         self.size = 20
-        self.brand = "Ching-Ling"
+        self.brand = "EastTiger"
 
 
 tv = Television()

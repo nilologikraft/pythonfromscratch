@@ -12,4 +12,4 @@ if distance <= 200:
     fare = 0.5 * distance
 else:
     fare = 0.45 * distance
-print(f"Ticket price: R$ {fare:7.2f}")
+print(f"Ticket price: ${fare:7.2f}")

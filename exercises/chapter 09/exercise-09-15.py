@@ -18,7 +18,6 @@
 # containing one word per line.
 #
 # The game randomly chooses a word from this file
-import sys
 import random
 
 words = []

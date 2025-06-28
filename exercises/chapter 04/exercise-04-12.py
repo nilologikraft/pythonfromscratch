@@ -28,4 +28,4 @@ else:
     price = 0
     print("Error! Unknown installation type!")
 cost = consumption * price
-print(f"Amount to pay: R$ {cost:7.2f}")
+print(f"Amount to pay: $ {cost:7.2f}")

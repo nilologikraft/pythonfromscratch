@@ -16,24 +16,31 @@ n = int(input("Enter the number to verify:"))
 # Example: 341 - first power of 10 greater: 1000 = 10 ^ 4
 # We'll use 4 and not 3 to allow handling numbers
 # with a single digit. The adjustment is made in the formulas below
-q = 0
-while 10**q < n:
-    q = q + 1
-i = q
-f = 0
-nf = ni = n  # Here we copy n to ni and nf
-pi = pf = 0  # and make pi = pf (for special cases)
-while i > f:
-    pi = int(ni / (10 ** (i - 1)))  # Rightmost digit
-    pf = nf % 10  # Leftmost digit
-    if pi != pf:  # If they are different, we exit
+maximum_exponent_of_10 = 0
+while 10**maximum_exponent_of_10 < n:
+    maximum_exponent_of_10 += 1
+# Positions relative to the right and left of n
+from_right = maximum_exponent_of_10
+from_left = 0
+# Here we copy n to number_from_left and number_from_right
+number_from_left = number_from_right = n
+# and make digit_from_right = digit_from_left (for special cases)
+digit_from_right = digit_from_left = 0
+while from_right > from_left:
+    digit_from_right = int(
+        number_from_right / (10 ** (from_right - 1))
+    )  # Rightmost digit
+    digit_from_left = number_from_left % 10  # Leftmost digit
+    if digit_from_right != digit_from_left:  # If they are different, we exit
         break
-    f = f + 1  # Move to the next digit on the left
-    i = i - 1  # Move to the next digit on the right
-    ni = ni - (pi * (10**i))  # Adjust ni to remove the previous digit
-    nf = int(nf / 10)  # Adjust nf to remove the last digit
+    from_left = from_left + 1  # Move to the next digit on the left
+    from_right = from_right - 1  # Move to the next digit on the right
+    number_from_right = number_from_right - (
+        digit_from_right * (10**from_right)
+    )  # Adjust ni to remove the previous digit
+    number_from_left = int(number_from_left / 10)  # Adjust nf to remove the last digit
 
-if pi == pf:
+if digit_from_right == digit_from_left:
     print(f"{n} is a palindrome")
 else:
     print(f"{n} is not a palindrome")

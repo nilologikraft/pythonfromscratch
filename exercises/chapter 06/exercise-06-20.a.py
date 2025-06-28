@@ -8,10 +8,10 @@
 # File: chapter 06/exercise-06-20.a.py.py
 ##############################################################################
 sentence = input("Enter a sentence to count the letters:")
-d = {}
+letter_counter = {}
 for letter in sentence:
-    if letter in d:
-        d[letter] = d[letter] + 1
+    if letter in letter_counter:
+        letter_counter[letter] = letter_counter[letter] + 1
     else:
-        d[letter] = 1
-print(d)
+        letter_counter[letter] = 1
+print(letter_counter)

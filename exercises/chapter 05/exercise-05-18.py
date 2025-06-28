@@ -16,7 +16,7 @@ while True:
         to_pay -= current
         bills += 1
     else:
-        print(f"{bills} bill(s) of R${current}")
+        print(f"{bills} bill(s) of ${current}")
         if to_pay == 0:
             break
         elif current == 100:

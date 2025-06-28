@@ -10,15 +10,15 @@
 first = []
 second = []
 while True:
-    e = int(input("Enter a value for the first list (0 to finish):"))
-    if e == 0:
+    element = int(input("Enter a value for the first list (0 to finish):"))
+    if element == 0:
         break
-    first.append(e)
+    first.append(element)
 while True:
-    e = int(input("Enter a value for the second list (0 to finish):"))
-    if e == 0:
+    element = int(input("Enter a value for the second list (0 to finish):"))
+    if element == 0:
         break
-    second.append(e)
+    second.append(element)
 third = []
 # Here we will create another list with elements from the first
 # and second lists. There are several ways to solve this exercise.
@@ -33,11 +33,11 @@ while x < len(two_lists):
     while y < len(third):
         if two_lists[x] == third[y]:
             break
-        y = y + 1
+        y += 1
     if y == len(third):
         third.append(two_lists[x])
-    x = x + 1
+    x += 1
 x = 0
 while x < len(third):
     print(f"{x}: {third[x]}")
-    x = x + 1
+    x += 1
